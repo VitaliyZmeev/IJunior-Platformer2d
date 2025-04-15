@@ -12,10 +12,13 @@ namespace Platformer2d
         public void SetMoveFloat(float horizontalDirection) =>
             Animator.SetFloat(Move, horizontalDirection);
 
-        public void SetGroundedBool(bool value) => Animator.SetBool(Grounded, value);
+        public void SetGroundedBool(bool value) =>
+            Animator.SetBool(Grounded, value);
 
-        public void SetFallTrigger() => Animator.SetTrigger(Fall);
+        public void SetFallTrigger() =>
+            Animator.SetTrigger(Fall);
 
-        public void SetHitTrigger() => Animator.SetTrigger(Hit);
+        public void SetHitTrigger() =>
+            Animator.SetTrigger(Hit);
     }
 }

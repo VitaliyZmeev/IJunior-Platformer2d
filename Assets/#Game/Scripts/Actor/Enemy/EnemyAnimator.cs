@@ -7,8 +7,10 @@ namespace Platformer2d
         private readonly int Follow = Animator.StringToHash(nameof(Follow));
         private readonly int Attack = Animator.StringToHash(nameof(Attack));
 
-        public void SetFollowBool(bool value) => Animator.SetBool(Follow, value);
+        public void SetFollowBool(bool value) =>
+            Animator.SetBool(Follow, value);
 
-        public void SetAttackBool(bool value) => Animator.SetBool(Attack, value);
+        public void SetAttackBool(bool value) =>
+            Animator.SetBool(Attack, value);
     }
 }

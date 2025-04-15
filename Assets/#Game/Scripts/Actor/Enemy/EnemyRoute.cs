@@ -11,7 +11,7 @@ namespace Platformer2d
 
         public Transform CurrentWaypoint => _waypoints[_currentWaypointIndex];
 
-        public void SetNextWaypoint()
+        public void GoToNextPoint()
         {
             _currentWaypointIndex = ++_currentWaypointIndex % _waypoints.Length;
         }

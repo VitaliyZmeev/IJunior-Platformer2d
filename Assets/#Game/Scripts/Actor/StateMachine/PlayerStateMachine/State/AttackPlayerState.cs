@@ -18,11 +18,6 @@
             Actor.Animator.AttackFinished -= OnAttackFinished;
         }
 
-        public override void Update()
-        {
-            base.Update();
-        }
-
         private void OnAttackFinished()
         {
             StateMachine.TransitToState(typeof(MovePlayerState));

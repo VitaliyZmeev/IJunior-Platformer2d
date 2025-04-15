@@ -20,7 +20,7 @@ namespace Platformer2d
             if (Vector2.Distance(Actor.transform.position,
                 Actor.Route.CurrentWaypoint.position) <= WayPointTriggerRange)
             {
-                Actor.Route.SetNextWaypoint();
+                Actor.Route.GoToNextPoint();
                 MoveToWayPoint();
             }
 

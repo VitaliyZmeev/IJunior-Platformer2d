@@ -12,8 +12,10 @@
             }
         }
 
-        public void StopMove() => _canMove = false;
+        public void StopMove() =>
+            _canMove = false;
 
-        public void ContinueMove() => _canMove = true;
+        public void ContinueMove() =>
+            _canMove = true;
     }
 }

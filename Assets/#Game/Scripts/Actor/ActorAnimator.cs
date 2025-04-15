@@ -15,15 +15,21 @@ public abstract class ActorAnimator : MonoBehaviour
     public event Action AttackFinished;
     public event Action DeathFinished;
 
-    private void Awake() => _animator = GetComponent<Animator>();
+    private void Awake() =>
+        _animator = GetComponent<Animator>();
 
-    public void SetHurtTrigger() => _animator.SetTrigger(Hurt);
+    public void SetHurtTrigger() =>
+        _animator.SetTrigger(Hurt);
 
-    public void SetDeathTrigger() => _animator.SetTrigger(Death);
+    public void SetDeathTrigger() =>
+        _animator.SetTrigger(Death);
 
-    public void OnHitFinished() => HitFinished?.Invoke();
+    public void OnHitFinished() =>
+        HitFinished?.Invoke();
 
-    public void OnAttackFinished() => AttackFinished?.Invoke();
+    public void OnAttackFinished() =>
+        AttackFinished?.Invoke();
 
-    public void OnDeathFinished() => DeathFinished?.Invoke();
+    public void OnDeathFinished() =>
+        DeathFinished?.Invoke();
 }

@@ -7,7 +7,6 @@ namespace Platformer2d
     public class Player : Actor
     {
         private PlayerStateMachine _stateMachine;
-
         private PlayerInput _input;
         private PlayerMover _mover;
         private PlayerAnimator _animator;

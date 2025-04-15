@@ -6,6 +6,7 @@ namespace Platformer2d
     {
         [SerializeField] private float _jumpForce;
 
-        public void Jump() => Rigidbody.AddForce(Vector2.up * _jumpForce);
+        public void Jump() =>
+            Rigidbody.AddForce(Vector2.up * _jumpForce);
     }
 }
