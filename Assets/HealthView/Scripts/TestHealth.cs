@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Platformer2d
+namespace HealthViewIJunior
 {
-    public class Health : MonoBehaviour
+    public class TestHealth : MonoBehaviour
     {
-        [SerializeField] private int _maxValue = 3;
+        [SerializeField] private int _maxValue = 100;
 
         private int _value;
 

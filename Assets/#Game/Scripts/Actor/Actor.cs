@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Platformer2d
 {
+    [RequireComponent(typeof(Health))]
     [RequireComponent(typeof(ActorMover), typeof(ActorDetector), typeof(ActorCollider))]
     public abstract class Actor : MonoBehaviour
     {
-        [SerializeField] private int _maxHealth = 1;
         [SerializeField] private int _damageAttack = 1;
         [SerializeField] private float _rangeAttack = 4f;
 
@@ -27,7 +27,7 @@ namespace Platformer2d
 
         protected virtual void Awake()
         {
-            _health = new Health(_maxHealth);
+            _health = GetComponent<Health>();
             _actorMover = GetComponent<ActorMover>();
             _actorCollider = GetComponent<ActorCollider>();
             _actorAnimator = GetComponent<ActorAnimator>();
