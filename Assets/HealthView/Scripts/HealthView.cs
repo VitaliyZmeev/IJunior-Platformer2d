@@ -11,12 +11,12 @@ namespace HealthViewIJunior
 
         private void OnEnable()
         {
-            _health.ValueChanged += OnHealthChanged;
+            _health.Changed += OnHealthChanged;
         }
 
         private void OnDisable()
         {
-            _health.ValueChanged -= OnHealthChanged;
+            _health.Changed -= OnHealthChanged;
         }
 
         protected abstract void OnHealthChanged(int health);

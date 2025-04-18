@@ -12,7 +12,7 @@ namespace Platformer2d
         public int MaxValue => _maxValue;
 
         public event Action Died;
-        public event Action<int> ValueChanged;
+        public event Action<int> Changed;
 
         private void Start()
         {
@@ -26,34 +26,27 @@ namespace Platformer2d
 
         public void TakeHeal(int heal)
         {
-            if (_value + heal <= _maxValue)
-            {
-                SetValue(_value + heal);
-            }
+            if (heal < 0)
+                return;
+
+            SetValue(_value + heal);
         }
 
         public void TakeDamage(int damage)
         {
-            if (_value > damage)
-            {
-                SetValue(_value - damage);
-            }
-            else
-            {
-                Die();
-            }
-        }
+            if (damage < 0)
+                return;
 
-        private void Die()
-        {
-            SetValue(0);
-            Died?.Invoke();
+            if (damage >= _value)
+                Died?.Invoke();
+
+            SetValue(_value - damage);
         }
 
         private void SetValue(int value)
         {
-            _value = value;
-            ValueChanged?.Invoke(_value);
+            _value = Mathf.Clamp(value, 0, _maxValue);
+            Changed?.Invoke(_value);
         }
     }
 }

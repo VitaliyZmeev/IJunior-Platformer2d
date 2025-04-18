@@ -5,7 +5,7 @@ namespace HealthViewIJunior
 {
     public class SmoothlyHealthBar : HealthBar
     {
-        [SerializeField, Range(0, 1)] private float _deltaHealthChange = 0.1f;
+        [SerializeField] private float _totalTimeHealthChange = 1f;
 
         private Coroutine _coroutine;
 
@@ -19,12 +19,16 @@ namespace HealthViewIJunior
 
         private IEnumerator SmoothlyChangeHealth(int targetHealth)
         {
-            float normalizedTargetHealth = GetNormalizedHealth(targetHealth);
+            float time = 0f;
+            float startHealth = Bar.value;
+            float targetNormalizedHealth = GetNormalizedHealth(targetHealth);
 
-            while (Bar.value != normalizedTargetHealth)
+            while (time < _totalTimeHealthChange)
             {
-                Bar.value = Mathf.MoveTowards(Bar.value,
-                    normalizedTargetHealth, _deltaHealthChange * Time.deltaTime);
+                time += Time.deltaTime;
+
+                float changeStepNormalized = time / _totalTimeHealthChange;
+                Bar.value = Mathf.Lerp(startHealth, targetNormalizedHealth, changeStepNormalized);
 
                 yield return null;
             }

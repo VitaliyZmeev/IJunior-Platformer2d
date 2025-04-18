@@ -289,4 +289,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 0}
-  _deltaHealthChange: 0.5
+  _totalTimeHealthChange: 1

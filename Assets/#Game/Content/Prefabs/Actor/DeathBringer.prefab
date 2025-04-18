@@ -404,10 +404,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4177453860068662633, guid: 7e25a809336b1ef4d9b62d45f1f1367b, type: 3}
-      propertyPath: _actor
-      value: 
-      objectReference: {fileID: 4395016716579818647}
-    - target: {fileID: 4177453860068662633, guid: 7e25a809336b1ef4d9b62d45f1f1367b, type: 3}
       propertyPath: _health
       value: 
       objectReference: {fileID: 7934779974580695428}
