@@ -11,6 +11,7 @@ namespace Platformer2d
 
         public event Action JumpPerformed;
         public event Action HitPerformed;
+        public event Action LifeStealAbilityPerformed;
 
         private void Awake()
         {
@@ -22,6 +23,7 @@ namespace Platformer2d
             _inputActions.Enable();
             _inputActions.Player.Jump.performed += OnJumpPerformed;
             _inputActions.Player.Hit.performed += OnHitPerformed;
+            _inputActions.Player.LifeStealAbility.performed += OnLifeStealAbilityPerformed;
         }
 
         private void OnDisable()
@@ -29,6 +31,7 @@ namespace Platformer2d
             _inputActions.Disable();
             _inputActions.Player.Jump.performed -= OnJumpPerformed;
             _inputActions.Player.Hit.performed -= OnHitPerformed;
+            _inputActions.Player.LifeStealAbility.performed -= OnLifeStealAbilityPerformed;
         }
 
         public float GetMoveDirection()
@@ -58,6 +61,11 @@ namespace Platformer2d
         private void OnHitPerformed(InputAction.CallbackContext context)
         {
             HitPerformed?.Invoke();
+        }
+
+        private void OnLifeStealAbilityPerformed(InputAction.CallbackContext context)
+        {
+            LifeStealAbilityPerformed?.Invoke();
         }
     }
 }

@@ -7,36 +7,36 @@ namespace Platformer2d
     {
         [SerializeField] private float _followRange = 10f;
 
-        private EnemyRoute _route;
-        private EnemyMover _mover;
-        private EnemyAnimator _animator;
-        private EnemyStateMachine _stateMachine;
+        private EnemyRoute _enemyRoute;
+        private EnemyMover _enemyMover;
+        private EnemyAnimator _enemyAnimator;
+        private EnemyStateMachine _enemyStateMachine;
 
-        public EnemyRoute Route => _route;
-        public EnemyMover Mover => _mover;
-        public EnemyAnimator Animator => _animator;
+        public EnemyRoute EnemyRoute => _enemyRoute;
+        public EnemyMover EnemyMover => _enemyMover;
+        public EnemyAnimator EnemyAnimator => _enemyAnimator;
 
         protected override void Awake()
         {
             base.Awake();
-            _route = GetComponent<EnemyRoute>();
-            _mover = GetComponent<EnemyMover>();
-            _animator = GetComponent<EnemyAnimator>();
+            _enemyRoute = GetComponent<EnemyRoute>();
+            _enemyMover = GetComponent<EnemyMover>();
+            _enemyAnimator = GetComponent<EnemyAnimator>();
         }
 
         private void Start()
         {
-            _stateMachine = new(this);
+            _enemyStateMachine = new(this);
         }
 
         private void Update()
         {
-            _stateMachine.Update();
+            _enemyStateMachine.Update();
         }
 
         private void FixedUpdate()
         {
-            _stateMachine.FixedUpdate();
+            _enemyStateMachine.FixedUpdate();
         }
 
         public Player DetectFollowTarget()

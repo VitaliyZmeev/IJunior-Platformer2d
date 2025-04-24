@@ -4,23 +4,23 @@ using UnityEngine;
 namespace Platformer2d
 {
     [RequireComponent(typeof(Health))]
-    [RequireComponent(typeof(ActorMover), typeof(ActorDetector), typeof(ActorCollider))]
+    [RequireComponent(typeof(ActorMover), typeof(ActorDetector), typeof(ActorRigidbody))]
     public abstract class Actor : MonoBehaviour
     {
         [SerializeField] private int _damageAttack = 1;
         [SerializeField] private float _rangeAttack = 4f;
 
         private Health _health;
-        private ActorMover _actorMover;
-        private ActorCollider _actorCollider;
-        private ActorAnimator _actorAnimator;
+        private ActorMover _mover;
+        private ActorRigidbody _rigidbody;
+        private ActorAnimator _animator;
         private ActorDetector _targetDetector;
 
         protected float RangeAttack => _rangeAttack;
 
         public Health Health => _health;
-        public ActorMover ActorMover => _actorMover;
-        public ActorCollider ActorCollider => _actorCollider;
+        public ActorMover Mover => _mover;
+        public ActorRigidbody Rigidbody => _rigidbody;
         public ActorDetector TargetDetector => _targetDetector;
 
         public event Action Died;
@@ -28,24 +28,24 @@ namespace Platformer2d
         protected virtual void Awake()
         {
             _health = GetComponent<Health>();
-            _actorMover = GetComponent<ActorMover>();
-            _actorCollider = GetComponent<ActorCollider>();
-            _actorAnimator = GetComponent<ActorAnimator>();
+            _mover = GetComponent<ActorMover>();
+            _rigidbody = GetComponent<ActorRigidbody>();
+            _animator = GetComponent<ActorAnimator>();
             _targetDetector = GetComponent<ActorDetector>();
         }
 
         protected virtual void OnEnable()
         {
             _health.Died += StartDie;
-            _actorAnimator.HitFinished += AttackTarget;
-            _actorAnimator.DeathFinished += Die;
+            _animator.HitFinished += AttackTarget;
+            _animator.DeathFinished += Die;
         }
 
         protected virtual void OnDisable()
         {
             _health.Died -= StartDie;
-            _actorAnimator.HitFinished -= AttackTarget;
-            _actorAnimator.DeathFinished -= Die;
+            _animator.HitFinished -= AttackTarget;
+            _animator.DeathFinished -= Die;
         }
 
         protected virtual void Die()
@@ -53,10 +53,10 @@ namespace Platformer2d
             Died?.Invoke();
         }
 
-        private void TakeDamage(int damage)
+        public void TakeDamage(int damage)
         {
             _health.TakeDamage(damage);
-            _actorAnimator.SetHurtTrigger();
+            _animator.SetHurtTrigger();
         }
 
         private void AttackTarget()
@@ -69,8 +69,8 @@ namespace Platformer2d
 
         private void StartDie()
         {
-            _actorCollider.Disable();
-            _actorAnimator.SetDeathTrigger();
+            _rigidbody.Disable();
+            _animator.SetDeathTrigger();
         }
     }
 }

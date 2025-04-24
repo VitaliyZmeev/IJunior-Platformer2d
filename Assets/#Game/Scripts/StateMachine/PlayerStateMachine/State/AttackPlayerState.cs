@@ -9,13 +9,13 @@
 
         public override void Enter()
         {
-            Actor.Animator.AttackFinished += OnAttackFinished;
-            Actor.Animator.SetHitTrigger();
+            Actor.PlayerAnimator.AttackFinished += OnAttackFinished;
+            Actor.PlayerAnimator.SetHitTrigger();
         }
 
         public override void Exit()
         {
-            Actor.Animator.AttackFinished -= OnAttackFinished;
+            Actor.PlayerAnimator.AttackFinished -= OnAttackFinished;
         }
 
         private void OnAttackFinished()

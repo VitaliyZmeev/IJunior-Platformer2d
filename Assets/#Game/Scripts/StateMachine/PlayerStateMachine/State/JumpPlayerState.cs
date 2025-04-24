@@ -11,15 +11,15 @@
         {
             base.Enter();
 
-            Actor.Mover.Jump();
-            Actor.Animator.SetGroundedBool(false);
+            Actor.PlayerMover.Jump();
+            Actor.PlayerAnimator.SetGroundedBool(false);
         }
 
         public override void Update()
         {
             base.Update();
 
-            if (Actor.Mover.VelocityY < 0)
+            if (Actor.PlayerMover.VelocityY < 0)
             {
                 StateMachine.TransitToState(typeof(FallPlayerState));
             }

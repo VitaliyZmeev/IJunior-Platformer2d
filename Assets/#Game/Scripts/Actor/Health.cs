@@ -9,6 +9,7 @@ namespace Platformer2d
 
         private int _value;
 
+        public int Value => _value;
         public int MaxValue => _maxValue;
 
         public event Action Died;

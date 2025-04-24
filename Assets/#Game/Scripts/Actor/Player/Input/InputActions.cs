@@ -55,6 +55,15 @@ namespace Platformer2d
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LifeStealAbility"",
+                    ""type"": ""Button"",
+                    ""id"": ""4de10458-7997-4fa1-9f8c-6a139b4957d1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -105,11 +114,22 @@ namespace Platformer2d
                 {
                     ""name"": """",
                     ""id"": ""31dbe2b6-f6c3-47ea-af25-942a768c29d1"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Hit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f95815b-4a9e-4bc4-a69f-94d649df1317"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LifeStealAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -140,6 +160,7 @@ namespace Platformer2d
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Hit = m_Player.FindAction("Hit", throwIfNotFound: true);
+            m_Player_LifeStealAbility = m_Player.FindAction("LifeStealAbility", throwIfNotFound: true);
         }
 
         ~@InputActions()
@@ -209,6 +230,7 @@ namespace Platformer2d
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Hit;
+        private readonly InputAction m_Player_LifeStealAbility;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
@@ -216,6 +238,7 @@ namespace Platformer2d
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Hit => m_Wrapper.m_Player_Hit;
+            public InputAction @LifeStealAbility => m_Wrapper.m_Player_LifeStealAbility;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -234,6 +257,9 @@ namespace Platformer2d
                 @Hit.started += instance.OnHit;
                 @Hit.performed += instance.OnHit;
                 @Hit.canceled += instance.OnHit;
+                @LifeStealAbility.started += instance.OnLifeStealAbility;
+                @LifeStealAbility.performed += instance.OnLifeStealAbility;
+                @LifeStealAbility.canceled += instance.OnLifeStealAbility;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -247,6 +273,9 @@ namespace Platformer2d
                 @Hit.started -= instance.OnHit;
                 @Hit.performed -= instance.OnHit;
                 @Hit.canceled -= instance.OnHit;
+                @LifeStealAbility.started -= instance.OnLifeStealAbility;
+                @LifeStealAbility.performed -= instance.OnLifeStealAbility;
+                @LifeStealAbility.canceled -= instance.OnLifeStealAbility;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -278,6 +307,7 @@ namespace Platformer2d
             void OnMove(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
             void OnHit(InputAction.CallbackContext context);
+            void OnLifeStealAbility(InputAction.CallbackContext context);
         }
     }
 }

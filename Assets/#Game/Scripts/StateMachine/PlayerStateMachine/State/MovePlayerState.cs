@@ -10,26 +10,26 @@
         public override void Enter()
         {
             base.Enter();
-            Actor.Input.HitPerformed += OnHitPerformed;
+            Actor.PlayerInput.HitPerformed += OnHitPerformed;
         }
 
         public override void Exit()
         {
             base.Exit();
-            Actor.Input.HitPerformed -= OnHitPerformed;
+            Actor.PlayerInput.HitPerformed -= OnHitPerformed;
         }
 
         public override void Update()
         {
             base.Update();
-            Actor.Animator.SetMoveFloat(Actor.Input.GetMoveDirection());
+            Actor.PlayerAnimator.SetMoveFloat(Actor.PlayerInput.GetMoveDirection());
         }
 
         public override void FixedUpdate()
         {
             base.FixedUpdate();
 
-            if (Actor.Input.IsJump() && Actor.GroundChecker.IsGrounded())
+            if (Actor.PlayerInput.IsJump() && Actor.GroundChecker.IsGrounded())
                 StateMachine.TransitToState(typeof(JumpPlayerState));
         }
 

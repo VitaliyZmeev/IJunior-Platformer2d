@@ -12,8 +12,8 @@
             _player = Actor.DetectFollowTarget();
             _player.Died += OnTargetDie;
 
-            Actor.Mover.StopMove();
-            Actor.Animator.SetAttackBool(true);
+            Actor.EnemyMover.StopMove();
+            Actor.EnemyAnimator.SetAttackBool(true);
         }
 
         public override void FixedUpdate()
@@ -26,8 +26,8 @@
         {
             _player.Died -= OnTargetDie;
 
-            Actor.Mover.ContinueMove();
-            Actor.Animator.SetAttackBool(false);
+            Actor.EnemyMover.ContinueMove();
+            Actor.EnemyAnimator.SetAttackBool(false);
         }
 
         private void OnTargetDie()

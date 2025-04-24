@@ -5,7 +5,7 @@ namespace Platformer2d
     [RequireComponent(typeof(ActorMover))]
     public class ActorDetector : MonoBehaviour
     {
-        [SerializeField] private LayerMask _actorLayerMask;
+        [SerializeField] private LayerMask _targetActorLayerMask;
 
         private ActorMover _actorMover;
 
@@ -17,7 +17,7 @@ namespace Platformer2d
         public Actor DetectActor(float detectRange)
         {
             RaycastHit2D rayCastHit = Physics2D.Raycast(transform.position + Vector3.up,
-                new Vector2(_actorMover.DirectionX, 0f), detectRange, _actorLayerMask);
+                new Vector2(_actorMover.DirectionX, 0f), detectRange, _targetActorLayerMask);
             Collider2D collider = rayCastHit.collider;
 
             if (collider != null)

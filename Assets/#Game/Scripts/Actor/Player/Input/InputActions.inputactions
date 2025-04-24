@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LifeStealAbility",
+                    "type": "Button",
+                    "id": "4de10458-7997-4fa1-9f8c-6a139b4957d1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -81,11 +90,22 @@
                 {
                     "name": "",
                     "id": "31dbe2b6-f6c3-47ea-af25-942a768c29d1",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Hit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f95815b-4a9e-4bc4-a69f-94d649df1317",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LifeStealAbility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

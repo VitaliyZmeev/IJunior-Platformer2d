@@ -11,7 +11,7 @@
         {
             base.Enter();
 
-            Actor.Animator.SetFallTrigger();
+            Actor.PlayerAnimator.SetFallTrigger();
         }
 
         public override void FixedUpdate()
@@ -20,7 +20,7 @@
 
             if (Actor.GroundChecker.IsGrounded())
             {
-                Actor.Animator.SetGroundedBool(true);
+                Actor.PlayerAnimator.SetGroundedBool(true);
                 StateMachine.TransitToState(typeof(MovePlayerState));
             }
         }

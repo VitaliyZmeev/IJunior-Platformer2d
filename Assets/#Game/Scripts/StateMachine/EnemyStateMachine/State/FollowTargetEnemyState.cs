@@ -9,7 +9,8 @@
 
         public override void Enter()
         {
-            Actor.Animator.SetFollowBool(true);
+            Actor.EnemyAnimator.SetFollowBool(true);
+            Actor.Rigidbody.ResetExcludeLayerMask();
         }
 
         public override void FixedUpdate()
@@ -23,7 +24,7 @@
             Player followTarget = Actor.DetectFollowTarget();
 
             if (followTarget != null)
-                Actor.ActorMover.MoveToDirectionX(Actor.transform.position.x,
+                Actor.Mover.MoveToDirectionX(Actor.transform.position.x,
                     followTarget.transform.position.x);
             else
                 StateMachine.TransitToState(typeof(MoveEnemyState));

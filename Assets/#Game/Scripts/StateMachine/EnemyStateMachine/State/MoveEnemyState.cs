@@ -11,16 +11,17 @@ namespace Platformer2d
 
         public override void Enter()
         {
-            Actor.Animator.SetFollowBool(false);
+            Actor.EnemyAnimator.SetFollowBool(false);
+            Actor.Rigidbody.SetExcludeLayerMask(nameof(Enemy));
             MoveToWayPoint();
         }
 
         public override void FixedUpdate()
         {
             if (Vector2.Distance(Actor.transform.position,
-                Actor.Route.CurrentWaypoint.position) <= WayPointTriggerRange)
+                Actor.EnemyRoute.CurrentWaypoint.position) <= WayPointTriggerRange)
             {
-                Actor.Route.GoToNextPoint();
+                Actor.EnemyRoute.GoToNextPoint();
                 MoveToWayPoint();
             }
 
@@ -28,7 +29,7 @@ namespace Platformer2d
                 StateMachine.TransitToState(typeof(FollowTargetEnemyState));
         }
 
-        private void MoveToWayPoint() => Actor.ActorMover.MoveToDirectionX
-            (Actor.transform.position.x, Actor.Route.CurrentWaypoint.position.x);
+        private void MoveToWayPoint() => Actor.Mover.MoveToDirectionX
+            (Actor.transform.position.x, Actor.EnemyRoute.CurrentWaypoint.position.x);
     }
 }
