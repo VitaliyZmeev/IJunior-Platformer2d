@@ -6,12 +6,20 @@ namespace Platformer2d
     public class LifeStealAbility : Ability
     {
         [SerializeField] private float _radius = 4f;
+        [SerializeField] private int _maxTargets = 10;
         [SerializeField] private int _amountLifeSteal = 2;
         [SerializeField] private LayerMask _enemyLayerMask;
+
+        private Collider2D[] _targetColliders;
 
         public float Radius => _radius;
 
         public event Action<int> HealthStolen;
+
+        private void Awake()
+        {
+            _targetColliders = new Collider2D[_maxTargets];
+        }
 
         protected override void InvokeAbilityAction()
         {
@@ -25,15 +33,15 @@ namespace Platformer2d
         {
             Enemy target = default;
             float targetDistance = float.MaxValue;
-            Collider2D[] colliders = Physics2D.OverlapCircleAll
-                (transform.position, _radius, _enemyLayerMask);
+            int targetColliders = Physics2D.OverlapCircleNonAlloc
+                (transform.position, _radius, _targetColliders, _enemyLayerMask);
 
-            foreach (Collider2D collider in colliders)
+            for (int i = 0; i < targetColliders; i++)
             {
-                if (collider.TryGetComponent(out Enemy enemy))
+                if (_targetColliders[i].TryGetComponent(out Enemy enemy))
                 {
-                    float currentEnemyDistance = Vector2.Distance(transform.position,
-                        enemy.transform.position);
+                    float currentEnemyDistance = (transform.position -
+                        enemy.transform.position).sqrMagnitude;
 
                     if (currentEnemyDistance <= targetDistance)
                     {
